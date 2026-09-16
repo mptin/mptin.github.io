@@ -1,0 +1,65 @@
+site_name: Портфолио — Программирование на Python
+site_description: Отчёты по лабораторным работам, Ашихмин Кирилл, группа P3124
+site_author: Ашихмин Кирилл
+site_url: https://mptin.github.io/
+
+repo_url: https://github.com/mptin/mptin.github.io
+repo_name: mptin/mptin.github.io
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.sections      # разделы меню видны развёрнутыми
+    - navigation.top           # кнопка "наверх"
+    - content.code.copy        # кнопка копирования кода
+    - search.highlight
+  palette:
+    # Светлая тема
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Тёмная тема
+    # Тёмная тема
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+
+markdown_extensions:
+  - admonition                 # блоки "примечание", "внимание"
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences       # вложенные блоки кода
+  - pymdownx.details
+
+plugins:
+  - search:
+      lang: ru
+
+nav:
+  - Главная: index.md
+  - Об авторе: about.md
+  - Лабораторные работы:
+      - ЛР 1. MkDocs и GitHub Pages: LR-1.md
+      - ЛР 2. NumPy: LR-2.md
+      - ЛР 3. CI/CD в SourceCraft: LR-3.md
+      - ЛР 4. Классификация (Scikit-Learn): LR-4.md
+      - ЛР 5. Регрессия (Scikit-Learn): LR-5.md
+      - ЛР 6. Очистка данных (pandas): LR-6.md
+      - ЛР 7. Анализ текста: LR-7.md
+      - ЛР 8. Скрапинг: LR-8.md
+      - ЛР 9. Графика и артефакты CI: LR-9.md
+      - ЛР 10. ML-сервис на FastAPI: LR-10.md
+
+copyright: Ашихмин Кирилл, группа P3124
