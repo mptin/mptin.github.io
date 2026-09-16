@@ -1,0 +1,2024 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Отчёты по лабораторным работам, Ашихмин Кирилл, группа P3124">
+      
+      
+        <meta name="author" content="Ашихмин Кирилл">
+      
+      
+        <link rel="canonical" href="https://mptin.github.io/LR-10/">
+      
+      
+        <link rel="prev" href="../LR-9/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ЛР 10. ML-сервис на FastAPI - Портфолио — Программирование на Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10-ml-" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Портфолио — Программирование на Python" class="md-header__button md-logo" aria-label="Портфолио — Программирование на Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Портфолио — Программирование на Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ЛР 10. ML-сервис на FastAPI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Тёмная тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Тёмная тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Светлая тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Светлая тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mptin/mptin.github.io" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mptin/mptin.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Портфолио — Программирование на Python" class="md-nav__button md-logo" aria-label="Портфолио — Программирование на Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Портфолио — Программирование на Python
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mptin/mptin.github.io" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mptin/mptin.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Об авторе
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторные работы
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Лабораторные работы
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 1. MkDocs и GitHub Pages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 2. NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 3. CI/CD в SourceCraft
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 4. Классификация (Scikit-Learn)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 5. Регрессия (Scikit-Learn)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 6. Очистка данных (pandas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 7. Анализ текста
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 8. Скрапинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LR-9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 9. Графика и артефакты CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 10. ML-сервис на FastAPI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ЛР 10. ML-сервис на FastAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Цель работы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Состав команды
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что получилось
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Часть 1. Данные и модель (Солдатов Павел)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Часть 1. Данные и модель (Солдатов Павел)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что в данных
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как подготовили признаки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отбор признаков
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сравнение моделей
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Откуда такое высокое качество
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что сохраняется в файл модели
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Часть 2. Бэкенд (Ашихмин Кирилл)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Часть 2. Бэкенд (Ашихмин Кирилл)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Методы API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что возвращает /predict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict-from-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что возвращает /predict-from-csv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как загружается модель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обработка ошибок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проверка входных данных
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Часть 3. Интерфейс (Ашихмин Кирилл)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тесты
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-sourcecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI на SourceCraft
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что оказалось неочевидным
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dastdats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Соответствие DAST/DATS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Дополнительные задания
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Выводы
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Цель работы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Состав команды
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задание
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что получилось
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Часть 1. Данные и модель (Солдатов Павел)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Часть 1. Данные и модель (Солдатов Павел)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что в данных
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как подготовили признаки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отбор признаков
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сравнение моделей
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Откуда такое высокое качество
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что сохраняется в файл модели
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Часть 2. Бэкенд (Ашихмин Кирилл)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Часть 2. Бэкенд (Ашихмин Кирилл)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Методы API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что возвращает /predict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predict-from-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что возвращает /predict-from-csv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как загружается модель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обработка ошибок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проверка входных данных
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Часть 3. Интерфейс (Ашихмин Кирилл)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тесты
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-sourcecraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI на SourceCraft
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что оказалось неочевидным
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dastdats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Соответствие DAST/DATS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Дополнительные задания
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Выводы
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="10-ml-">ЛР 10. ML-сервис для предсказания одобрения ипотеки<a class="headerlink" href="#10-ml-" title="Permanent link">&para;</a></h1>
+<h2 id="_1">Цель работы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Пройти весь путь разработки ML-сервиса: от сырых данных и обучения модели до
+готового веб-приложения с API и интерфейсом.</p>
+<h2 id="_2">Состав команды<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Роли распределили так, как предлагает задание.</p>
+<table>
+<thead>
+<tr>
+<th>Участник</th>
+<th>Роль</th>
+<th>За что отвечал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Солдатов Павел, P3124</td>
+<td>ML Engineer</td>
+<td>подготовка данных, обучение и сравнение моделей, отбор признаков, сохранение модели</td>
+</tr>
+<tr>
+<td>Ашихмин Кирилл Алексеевич, P3124</td>
+<td>Backend Developer + Frontend</td>
+<td>API на FastAPI, интеграция модели, обработка ошибок, тесты, CI, веб-интерфейс</td>
+</tr>
+</tbody>
+</table>
+<p>Так же разделены файлы:</p>
+<table>
+<thead>
+<tr>
+<th>Роль</th>
+<th>Файлы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ML</td>
+<td><code>ml/features.py</code>, <code>ml/preprocessing.py</code>, <code>ml/train.py</code></td>
+</tr>
+<tr>
+<td>Backend</td>
+<td><code>app/main.py</code>, <code>app/schemas.py</code>, <code>app/model_store.py</code>, <code>tests/</code></td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>app/static/index.html</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Репозиторий:</strong> <a href="https://sourcecraft.dev/anthony-004/lr-10">https://sourcecraft.dev/anthony-004/lr-10</a></p>
+<h2 id="_3">Задание<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Сделать сервис, который подсказывает сотруднику банка, стоит ли одобрять
+ипотеку. Требования:</p>
+<ul>
+<li>обработать данные: очистка, кодирование категорий, масштабирование, разбиение
+  на train/test, отбор признаков;</li>
+<li>обучить и сравнить минимум две модели, выбрать лучшую по ROC-AUC, сохранить
+  её в файл;</li>
+<li>сделать API на FastAPI с тремя методами: <code>/upload-model</code>, <code>/predict</code>,
+  <code>/predict-from-csv</code>;</li>
+<li>сделать простой интерфейс (вайбкодинг разрешён, но нужно приложить промпты);</li>
+<li>писать код по DAST/DATS: тесты, аннотации типов, докстринги, PEP-8;</li>
+<li>настроить CI на SourceCraft с тестами и линтингом фронтенда и бэкенда;</li>
+<li>зависимости вести через менеджер <code>uv</code>.</li>
+</ul>
+<h2 id="_4">Что получилось<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>Веб-приложение, которое:</p>
+<ul>
+<li>принимает данные клиента через форму и сразу показывает решение и
+  вероятность одобрения;</li>
+<li>умеет обрабатывать целый csv-файл и считать по нему качество модели;</li>
+<li>позволяет загрузить новую модель, не перезапуская сервис.</li>
+</ul>
+<p>Модель — градиентный бустинг, ROC-AUC 0.977. Тестов 33, все проходят. Линтер
+замечаний не даёт.</p>
+<h2 id="1">Часть 1. Данные и модель (Солдатов Павел)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="_5">Что в данных<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>Датасет <code>loan_data.csv</code>: 45 000 заявок, 13 признаков, целевая переменная
+<code>loan_status</code> (1 — одобрено, 0 — отказ). Одобрено 22.2% заявок, то есть классы
+несбалансированы: отказов почти вчетверо больше.</p>
+<p>Пустых значений и дубликатов нет. Зато нашлись явные опечатки при вводе:</p>
+<table>
+<thead>
+<tr>
+<th>Признак</th>
+<th>Максимум в данных</th>
+<th>Что сделали</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>person_age</code></td>
+<td>144 года</td>
+<td>удалили строки, где больше 100</td>
+</tr>
+<tr>
+<td><code>person_emp_exp</code></td>
+<td>125 лет стажа</td>
+<td>удалили строки, где больше 60</td>
+</tr>
+</tbody>
+</table>
+<p>Строки удалили целиком, а не заменили значения границей диапазона: возраста
+144 года не бывает, это ошибка ввода. Удалено 10 строк из 45 000, то есть 0.02%
+данных.</p>
+<h3 id="_6">Как подготовили признаки<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Текстовые признаки (например, цель кредита) модель понимать не умеет, ей нужны
+числа. Поэтому:</p>
+<ul>
+<li><code>OneHotEncoder</code> превращает каждую категорию в отдельный столбец из нулей и
+  единиц;</li>
+<li><code>StandardScaler</code> приводит числа к одному размаху, чтобы доход не перевешивал
+  кредитный рейтинг просто потому, что числа крупнее.</li>
+</ul>
+<p>Всё это собрано в один объект <code>Pipeline</code>, внутри которого лежит и обработка
+данных, и сама модель.</p>
+<p>Данные разбили на обучающую и тестовую части в пропорции 80/20 с параметром
+<code>stratify</code>. Он следит, чтобы доля одобренных заявок в обеих частях была
+одинаковой. При несбалансированных классах без этого тестовая выборка может
+случайно получиться непохожей на обучающую.</p>
+<h3 id="_7">Отбор признаков<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Проверяли так: берём один признак, случайно перемешиваем его значения по всем
+строкам и смотрим, насколько просело качество модели. Если просело сильно —
+признак важный. Если не просело — модель им и не пользовалась. Метод называется
+permutation importance, считали его на тестовой выборке.</p>
+<table>
+<thead>
+<tr>
+<th>Признак</th>
+<th>Важность</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>previous_loan_defaults_on_file</td>
+<td>0.2956</td>
+</tr>
+<tr>
+<td>loan_percent_income</td>
+<td>0.0380</td>
+</tr>
+<tr>
+<td>loan_int_rate</td>
+<td>0.0348</td>
+</tr>
+<tr>
+<td>person_income</td>
+<td>0.0271</td>
+</tr>
+<tr>
+<td>person_home_ownership</td>
+<td>0.0266</td>
+</tr>
+<tr>
+<td>loan_intent</td>
+<td>0.0111</td>
+</tr>
+<tr>
+<td>credit_score</td>
+<td>0.0042</td>
+</tr>
+<tr>
+<td>loan_amnt</td>
+<td>0.0010</td>
+</tr>
+<tr>
+<td>person_age</td>
+<td>0.0007</td>
+</tr>
+<tr>
+<td>person_education / person_emp_exp / person_gender</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>cb_person_cred_hist_length</td>
+<td>−0.0001</td>
+</tr>
+</tbody>
+</table>
+<p>Оставили 7 признаков из 13. Качество при этом практически не изменилось:</p>
+<table>
+<thead>
+<tr>
+<th>Набор признаков</th>
+<th>ROC-AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>все 13</td>
+<td>0.9768</td>
+</tr>
+<tr>
+<td>отобранные 7</td>
+<td>0.9767</td>
+</tr>
+</tbody>
+</table>
+<p>Разница в четвёртом знаке, то есть её фактически нет. Зато сервису нужно почти
+вдвое меньше полей: форма короче, и ошибиться при вводе сложнее.</p>
+<h3 id="_8">Сравнение моделей<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>Обучили три модели на одних и тех же данных.</p>
+<table>
+<thead>
+<tr>
+<th>Модель</th>
+<th>ROC-AUC (13 признаков)</th>
+<th>ROC-AUC (7 признаков)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Градиентный бустинг</strong> (HistGradientBoosting)</td>
+<td><strong>0.9768</strong></td>
+<td><strong>0.9767</strong></td>
+</tr>
+<tr>
+<td>Случайный лес</td>
+<td>0.9743</td>
+<td>0.9725</td>
+</tr>
+<tr>
+<td>Логистическая регрессия</td>
+<td>0.9540</td>
+<td>0.9518</td>
+</tr>
+</tbody>
+</table>
+<p>Выбрали градиентный бустинг. Подробнее по нему:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>              precision    recall  f1-score   support
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>       отказ       0.94      0.97      0.96      6998
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    одобрено       0.88      0.79      0.84      2000
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    accuracy                           0.93      8998
+</code></pre></div>
+<p>Читается так: из всех заявок, которые модель назвала одобренными, реально
+одобрены 88%. А из всех реально одобренных модель нашла 79%.</p>
+<h3 id="_9">Откуда такое высокое качество<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>ROC-AUC 0.977 для кредитного скоринга очень много. Объяснение нашлось в данных.</p>
+<p>Признак <code>previous_loan_defaults_on_file</code> («были ли раньше просрочки») решает
+почти всё. Если посмотреть на данные напрямую:</p>
+<ul>
+<li>если раньше был дефолт — отказ в 100% случаев, 22 858 строк, ни одного
+  исключения;</li>
+<li>если дефолта не было — одобряют 45.2% заявок.</li>
+</ul>
+<p>То есть в датасет зашито жёсткое правило: был дефолт — отказ всегда. Одного
+этого признака хватает, чтобы получить ROC-AUC 0.83 вообще без обучения модели.</p>
+<p>Утечкой данных это назвать нельзя: о прошлых просрочках банк знает до решения, и
+использовать их законно. Но модель во многом просто повторяет готовое правило
+вместо того, чтобы находить закономерности. Риск в том, что если это поле начнёт
+приходить пустым или недостоверным, качество резко упадёт.</p>
+<h3 id="_10">Что сохраняется в файл модели<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>В файл идёт весь <code>Pipeline</code> целиком и служебная информация: список признаков,
+название алгоритма, ROC-AUC, дата обучения.</p>
+<p>Если сохранить только модель, а кодирование и масштабирование выполнять на
+сервере вручную, рано или поздно обработка на сервере разойдётся с обработкой
+при обучении. Сервис при этом не упадёт: он продолжит отвечать, просто ответы
+станут неверными.</p>
+<h2 id="2">Часть 2. Бэкенд (Ашихмин Кирилл)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="api">Методы API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/upload-model</code></td>
+<td>загрузить файл модели в формате pkl</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/predict</code></td>
+<td>предсказание по одной или нескольким заявкам</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/predict-from-csv</code></td>
+<td>предсказание по csv-файлу, с расчётом ROC-AUC</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/model-info</code></td>
+<td>какая модель сейчас загружена</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/health</code></td>
+<td>сервис жив, модель загружена или нет</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/</code></td>
+<td>веб-интерфейс</td>
+</tr>
+</tbody>
+</table>
+<p>Первые три требовались заданием, остальные добавлены для удобства: интерфейсу
+нужно знать, загружена ли модель, и какие поля она ожидает.</p>
+<h3 id="predict">Что возвращает <code>/predict</code><a class="headerlink" href="#predict" title="Permanent link">&para;</a></h3>
+<p>Принимает список заявок, возвращает по каждой исходные признаки плюс решение:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="nt">"predictions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"person_income"</span><span class="p">:</span><span class="w"> </span><span class="mf">71948.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"loan_int_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">16.02</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"loan_percent_income"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.49</span><span class="p">,</span><span class="w"> </span><span class="nt">"credit_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">561</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"person_home_ownership"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RENT"</span><span class="p">,</span><span class="w"> </span><span class="nt">"loan_intent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERSONAL"</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"previous_loan_defaults_on_file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"loan_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"decision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"одобрено"</span><span class="p">,</span><span class="w"> </span><span class="nt">"approval_probability"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.998</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}]}</span>
+</code></pre></div>
+<p>Кроме метки возвращается вероятность. Порог 0.5 задаёт банк, сотрудник видит
+вероятность и решает сам. Поменять порог можно без переобучения модели.</p>
+<h3 id="predict-from-csv">Что возвращает <code>/predict-from-csv</code><a class="headerlink" href="#predict-from-csv" title="Permanent link">&para;</a></h3>
+<p>Принимает csv и работает с двумя вариантами файла: и с «сырым» со всеми
+исходными столбцами (например, полученным из <code>train_test_split</code>), и с уже
+подготовленным, где только отобранные 7 признаков.</p>
+<p>Возвращает весь датасет со столбцом <code>predicted_loan_status</code>. Если в файле был
+столбец <code>loan_status</code> с правильными ответами, сервис дополнительно считает
+ROC-AUC.</p>
+<h3 id="_11">Как загружается модель<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>Модель читается с диска один раз при старте и лежит в памяти в объекте
+<code>ModelStore</code>. Если читать файл на каждый запрос, сервис станет очень медленным.</p>
+<p>Когда файла модели нет, сервис всё равно запускается и пишет предупреждение в
+лог. Модель потом можно дослать через <code>/upload-model</code>. Так сервис не падает при
+развёртывании, если модель ещё не обучена.</p>
+<h3 id="_12">Обработка ошибок<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>Сервис должен ломаться предсказуемо и объяснять, что не так.</p>
+<table>
+<thead>
+<tr>
+<th>Ситуация</th>
+<th>Ответ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>модель не загружена</td>
+<td>503 и текст «отправьте pkl на /upload-model»</td>
+</tr>
+<tr>
+<td>загружен битый файл или не модель</td>
+<td>400 с причиной</td>
+</tr>
+<tr>
+<td>в csv нет нужных столбцов</td>
+<td>400 со списком недостающих</td>
+</tr>
+<tr>
+<td>значение поля вне допустимого диапазона</td>
+<td>422 с указанием поля</td>
+</tr>
+<tr>
+<td>в csv все строки одного класса</td>
+<td>ROC-AUC не считается, возвращается <code>null</code></td>
+</tr>
+</tbody>
+</table>
+<p>Последний случай особый: ROC-AUC математически не определён, если в данных
+только один класс. Сервис из-за этого не падает и возвращает <code>null</code>.</p>
+<h3 id="_13">Проверка входных данных<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>Проверки описаны в <code>app/schemas.py</code> через библиотеку <code>pydantic</code> и срабатывают
+до того, как данные дойдут до модели.</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Ограничение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>person_income</code></td>
+<td>больше 0</td>
+</tr>
+<tr>
+<td><code>loan_int_rate</code></td>
+<td>от 0 до 100</td>
+</tr>
+<tr>
+<td><code>loan_percent_income</code></td>
+<td>от 0 до 1</td>
+</tr>
+<tr>
+<td><code>credit_score</code></td>
+<td>от 300 до 850</td>
+</tr>
+<tr>
+<td><code>person_home_ownership</code></td>
+<td>RENT / OWN / MORTGAGE / OTHER</td>
+</tr>
+<tr>
+<td><code>loan_intent</code></td>
+<td>один из 6 вариантов</td>
+</tr>
+<tr>
+<td><code>previous_loan_defaults_on_file</code></td>
+<td>Yes / No</td>
+</tr>
+</tbody>
+</table>
+<p>Если прислать <code>credit_score: 9999</code>, сервис ответит 422 и скажет, какое поле не
+подходит, вместо того чтобы отдать модели бессмысленное число.</p>
+<h2 id="3">Часть 3. Интерфейс (Ашихмин Кирилл)<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>Страница сгенерирована с помощью LLM. Задание это прямо разрешает при условии,
+что промпты приложены.</p>
+<p><code>app/static/index.html</code> — одна HTML-страница без фреймворков и сборщиков. Три
+блока: форма с данными клиента, статус модели с возможностью загрузить новый
+pkl, загрузка csv-файла.</p>
+<p>Оформление сделано в стиле печатного отчёта: шрифт с засечками, разделы
+пронумерованы римскими цифрами, тонкие линейки вместо карточек с тенями. Цвет
+почти не используется, только тёмно-зелёный и тёмно-красный узкой полосой рядом
+с решением. В том же стиле оформлена и страница документации API.</p>
+<details class="note">
+<summary>Полный текст промпта, по которому сделана страница</summary>
+<p>Свёрстай одну статическую HTML-страницу без внешних зависимостей и
+сборщиков для сервиса предсказания одобрения ипотеки.</p>
+<p>Содержание. Три раздела: (1) форма из 7 полей — <code>person_income</code>,
+<code>loan_int_rate</code>, <code>loan_percent_income</code>, <code>credit_score</code> числовыми полями,
+<code>person_home_ownership</code>, <code>loan_intent</code>, <code>previous_loan_defaults_on_file</code>
+выпадающими списками с русскими подписями; по кнопке шлёт
+<code>POST /predict</code> с телом <code>{"records":[{...}]}</code> и показывает решение,
+вероятность и индикатор заполнения; (2) статус модели — читает
+<code>GET /health</code> и <code>GET /model-info</code>, плюс форма загрузки <code>.pkl</code> на
+<code>POST /upload-model</code>; (3) форма загрузки <code>.csv</code> на <code>POST /predict-from-csv</code>,
+показывает число обработанных строк, ROC-AUC и первые 5 строк ответа.</p>
+<p>Оформление академическое, как у печатного отчёта. Шрифт с засечками для
+заголовков и текста, моноширинный для числовых значений, мелкий
+прописной с разрядкой для подписей полей. Разделы пронумерованы римскими
+цифрами. Вместо карточек с тенями и скруглениями — тонкие линейки и
+прямые углы. Шапка как титульный лист: название, строка с номером работы и
+автором, двойная линейка под ней. Цвета почти нет: тёмные чернила на
+бумажном фоне, тёмно-зелёный для одобрения и тёмно-красный для отказа,
+только как узкая полоса слева от блока с решением.</p>
+<p>Ошибки API показывать пользователю текстом, а не в консоли. Вёрстка
+адаптивная, в одну колонку на экранах уже 480 пикселей. Без анимаций.</p>
+</details>
+<h2 id="_14">Тесты<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>Всего 33 теста, все проходят.</p>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>Тестов</th>
+<th>Что проверяет</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test_preprocessing.py</code></td>
+<td>7</td>
+<td>очистку данных и кодирование признаков</td>
+</tr>
+<tr>
+<td><code>test_api.py</code></td>
+<td>19</td>
+<td>все методы API и поведение при ошибках</td>
+</tr>
+<tr>
+<td><code>test_frontend.py</code></td>
+<td>7</td>
+<td>что страница не разошлась с моделью</td>
+</tr>
+</tbody>
+</table>
+<p>Кроме удачных сценариев проверяются поломки: запрос без загруженной модели,
+битый pkl-файл, csv без нужных столбцов, значение вне диапазона.</p>
+<p>Тесты фронтенда проверяют согласованность страницы с моделью. Для каждого
+признака модели на странице должно быть поле, а варианты в выпадающих списках
+должны совпадать с допустимыми значениями из <code>ml/features.py</code>. Если из модели
+уберут признак, а поле на странице забудут, тест это поймает. Внешний вид при
+этом можно менять свободно.</p>
+<h2 id="ci-sourcecraft">CI на SourceCraft<a class="headerlink" href="#ci-sourcecraft" title="Permanent link">&para;</a></h2>
+<p>Настроен в <code>.sourcecraft/ci.yaml</code>, запускается при пуше в <code>main</code> и при создании
+pull request.</p>
+<table>
+<thead>
+<tr>
+<th>Задача</th>
+<th>Что делает</th>
+<th>Образ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backend / lint</code></td>
+<td><code>flake8</code> по <code>app</code>, <code>ml</code>, <code>tests</code></td>
+<td><code>python:3.12</code></td>
+</tr>
+<tr>
+<td><code>backend / test</code></td>
+<td>обучает модель и прогоняет 33 теста</td>
+<td><code>python:3.12</code></td>
+</tr>
+<tr>
+<td><code>frontend / htmlhint</code></td>
+<td>проверяет разметку <code>index.html</code></td>
+<td><code>node:20-alpine</code></td>
+</tr>
+<tr>
+<td><code>build / train-model</code></td>
+<td>обучает модель и сохраняет её как артефакт</td>
+<td><code>python:3.12</code></td>
+</tr>
+</tbody>
+</table>
+<p>Задание требовало линтинг и тестирование и фронтенда, и бэкенда. Обе части
+закрыты.</p>
+<div class="admonition note">
+<p class="admonition-title">Почему тесты и обучение в одном шаге</p>
+<p>Тестам API нужен файл модели, а в репозитории его нет: это бинарный
+артефакт сборки, он лежит в <code>.gitignore</code>. Поэтому сначала выполняется
+обучение, потом тесты.</p>
+<p>Разнести их по разным шагам нельзя: у каждого шага своя файловая система, и
+модель, обученная в соседнем шаге, будет не видна.</p>
+</div>
+<h2 id="_15">Что оказалось неочевидным<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Пустое поле чуть не начало терять заявки</p>
+<p>Очистка данных сначала оставляла строки по условию <code>person_age &lt;= 100</code>.
+Если возраст не указан вообще, такое сравнение даёт «ложь», и строка
+удалялась вместе с настоящими опечатками.</p>
+<p>При этом <code>person_age</code> в модель вообще не входит, его отсеял отбор
+признаков. Клиент загружал csv на 100 строк, получал 98 и не понимал, куда
+делись две, а сервис не показывал ни ошибки, ни предупреждения.</p>
+<p>Условие переписали на <code>~(person_age &gt; 100)</code>. Теперь удаляются только
+физически невозможные значения, а строки с пустым возрастом остаются:
+пустое поле означает «не знаем». На этот случай написан отдельный тест.</p>
+<p>Заметить это удалось только когда специально подсунули файл с пустым полем
+и сравнили число строк на входе и на выходе.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Модель держится на одном признаке</p>
+<p>Важность <code>previous_loan_defaults_on_file</code> на порядок выше всех остальных
+вместе взятых. С точки зрения банка это логично, прошлые просрочки лучше
+всего предсказывают будущие. Но сервис из-за этого уязвим: испортится одно
+поле, и качество обвалится.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Пол в модель не попал</p>
+<p>У признака <code>person_gender</code> важность ровно 0.0000, технически он не нужен.
+Удачно получилось и с правовой стороны: принимать кредитные решения на
+основании пола во многих странах запрещено, и модель с таким признаком не
+прошла бы проверку регулятора.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Неизвестная категория не должна ронять сервис</p>
+<p>Если в запросе придёт категория, которой не было при обучении,
+<code>OneHotEncoder</code> по умолчанию выбрасывает исключение. Поэтому он настроен с
+параметром <code>handle_unknown="ignore"</code>: такой объект просто получит нули по
+этому признаку, а сервис ответит нормально.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Настройки flake8 не читаются из pyproject.toml</p>
+<p>Сначала настройки линтера положили в <code>pyproject.toml</code>, в секцию
+<code>[tool.flake8]</code>. Оказалось, что flake8 этот файл не читает, и секция просто
+ничего не делала. Локально линтер ругался на длину строк, а CI проходил,
+потому что там лимит передавался флагом. Настройки перенесли в отдельный
+файл <code>.flake8</code>, и теперь локальная проверка и CI проверяют одно и то же.</p>
+</div>
+<h2 id="dastdats">Соответствие DAST/DATS<a class="headerlink" href="#dastdats" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Требование</th>
+<th>Как выполнено</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Тесты</td>
+<td>33 теста на pytest</td>
+</tr>
+<tr>
+<td>Аннотации типов (PEP 484)</td>
+<td>во всех функциях</td>
+</tr>
+<tr>
+<td>Докстринги (PEP 257)</td>
+<td>у всех модулей, классов и функций</td>
+</tr>
+<tr>
+<td>PEP 8</td>
+<td>проверяет <code>flake8</code>, замечаний нет</td>
+</tr>
+</tbody>
+</table>
+<p>Зависимости ведутся через <code>uv</code>: <code>pyproject.toml</code> и <code>uv.lock</code>. Рядом лежит
+<code>requirements.txt</code> для контейнеров CI, где проще поставить зависимости через
+<code>pip</code>, не устанавливая сам <code>uv</code>.</p>
+<h2 id="_16">Дополнительные задания<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Задание</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Логирование работы сервиса</td>
+<td>сделано, <code>logging</code> в <code>app/main.py</code></td>
+</tr>
+<tr>
+<td>Валидация входных данных</td>
+<td>сделано через <code>pydantic</code></td>
+</tr>
+<tr>
+<td>Docker-контейнеризация</td>
+<td>не делали</td>
+</tr>
+<tr>
+<td>Визуализация метрик</td>
+<td>не делали</td>
+</tr>
+</tbody>
+</table>
+<p>Два последних пункта в задании помечены как необязательные.</p>
+<h2 id="_17">Выводы<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>Отбор признаков окупился: входных полей стало вдвое меньше, а качество не
+изменилось. Меньше полей означает короче форму и меньше шансов ошибиться при
+вводе.</p>
+<p>Обработка данных обязана храниться вместе с моделью. Иначе однажды сервер
+обработает данные не так, как это делалось при обучении, и сервис начнёт врать
+молча, без ошибок.</p>
+<p>Сервис должен ломаться понятно. Нет модели — 503 с объяснением. Нет нужных
+столбцов — 400 со списком. Значение вне диапазона — 422 с именем поля. Все эти
+случаи покрыты тестами.</p>
+<p>ROC-AUC 0.977 выглядит отлично, пока не выяснится, что половину работы делает
+один признак с жёстким правилом внутри. Поэтому важно разобраться, откуда
+взялась метрика.</p>
+<p>История с пустым полем показала, что молчаливые ошибки опаснее явных. Код
+выглядел правильным, тесты проходили, сервис отвечал 200 и при этом тихо терял
+часть заявок.</p>
+<p>Разделение ролей сработало. ML-часть и бэкенд разрабатывались независимо и
+сошлись через файл модели и список признаков в <code>ml/features.py</code>. На этот список
+опираются и обучение, и проверка входных данных, и тесты интерфейса.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Ашихмин Кирилл, группа P3124
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
