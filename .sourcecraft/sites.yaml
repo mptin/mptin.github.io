@@ -1,0 +1,6 @@
+# Публикация статического сайта через SourceCraft Sites.
+# Публикуется каталог docs/ — это результат сборки MkDocs.
+# Адрес сайта: https://<организация>.sourcecraft.site/<имя_репозитория>
+site:
+  root: "docs"
+  ref: "main"

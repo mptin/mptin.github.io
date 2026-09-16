@@ -1,0 +1,27 @@
+# CI для сайта-портфолио: проверяем, что MkDocs собирается без ошибок,
+# и сохраняем собранный сайт как артефакт сборки.
+on:
+  push:
+    - workflows: [build-site]
+      filter:
+        branches: [main]
+  pull_request:
+    - workflows: [build-site]
+      filter:
+        target_branches: [main]
+
+workflows:
+  build-site:
+    tasks:
+      - name: build
+        cubes:
+          - name: mkdocs-build
+            image: python:3.12-slim
+            script:
+              - pip install --no-cache-dir -r requirements.txt
+              # --strict превращает предупреждения (битые ссылки, файлы вне nav)
+              # в ошибки, чтобы сломанный сайт не уехал на прод.
+              - mkdocs build --strict -f source/mkdocs.yml -d ../docs
+            artifacts:
+              paths:
+                - docs
