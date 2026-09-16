@@ -1,0 +1,52 @@
+# Автоматический деплой сайта-портфолио на GitHub Pages.
+name: Deploy MkDocs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # позволяет запустить деплой вручную из вкладки Actions
+
+# Права, которые нужны штатному экшену deploy-pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Если запушили несколько раз подряд, доводим до конца только последний деплой.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Собрать сайт
+        run: mkdocs build --strict -f source/mkdocs.yml -d ../docs
+
+      - uses: actions/configure-pages@v5
+
+      - name: Загрузить собранный сайт
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
